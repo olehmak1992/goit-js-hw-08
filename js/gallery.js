@@ -88,13 +88,13 @@ function createGalleryMarkup(elements) {
 
 function handlerGalleryClick(event) {
   event.preventDefault();
-  if (event.target === event.currentTarget) {
+
+  if (!event.target.classList.contains('gallery-image')) {
     return;
   }
-  const currentItem = event.target.closest('.gallery-image');
-  const largeImage = currentItem.dataset.source;
-  const altText = currentItem.alt;
 
+  const largeImage = event.target.dataset.source;
+  const altText = event.target.alt;
   const instance = basicLightbox.create(
     `
     <div class="modal"><img class="gallery-large-image" src="${largeImage}" alt="${altText}"/>
